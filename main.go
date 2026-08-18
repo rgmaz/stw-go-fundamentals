@@ -12,10 +12,10 @@ func main() {
 	line, _ := reader.ReadString('\n')
 	line = strings.TrimSpace(line)
 
-	words := strings.FieldsSeq(line)
+	words := strings.Fields(line)
 	distinctWords := make(map[string]int)
 
-	for w := range words {
+	for _, w := range words {
 		distinctWords[w]++
 	}
 
