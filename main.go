@@ -1,20 +1,25 @@
 package main
 
-import (
-	"bufio"
-	"fmt"
-	"os"
-	"strconv"
-	"strings"
+import "fmt"
+
+const (
+	fizz     = "Fizz"
+	buzz     = "Buzz"
+	fizzBuzz = fizz + buzz
 )
 
 func main() {
-	r := bufio.NewReader(os.Stdin)
-	name, _ := r.ReadString('\n')
-	name = strings.TrimRight(name, "\r\n")
-	ageStr, _ := r.ReadString('\n')
-	ageStr = strings.TrimRight(ageStr, "\r\n")
-	age, _ := strconv.Atoi(ageStr)
+	var n int
+	fmt.Scan(&n)
 
-	fmt.Printf("Hi, %s! You are %d years old.", name, age)
+	switch {
+	case n%15 == 0:
+		fmt.Println(fizzBuzz)
+	case n%5 == 0:
+		fmt.Println(buzz)
+	case n%3 == 0:
+		fmt.Println(fizz)
+	default:
+		fmt.Println(n)
+	}
 }
