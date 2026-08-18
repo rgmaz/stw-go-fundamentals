@@ -1,23 +1,25 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"os"
-	"strings"
 )
 
+type Point struct {
+	X, Y int
+}
+
 func main() {
-	reader := bufio.NewReader(os.Stdin)
-	line, _ := reader.ReadString('\n')
-	line = strings.TrimSpace(line)
+	var x1, y1, x2, y2 int
+	fmt.Scan(&x1)
+	fmt.Scan(&y1)
+	fmt.Scan(&x2)
+	fmt.Scan(&y2)
 
-	words := strings.Fields(line)
-	distinctWords := make(map[string]int)
+	p1 := Point{X: x1, Y: y1}
+	p2 := Point{X: x2, Y: y2}
 
-	for _, w := range words {
-		distinctWords[w]++
-	}
+	dx := p2.X - p1.X
+	dy := p2.Y - p1.Y
 
-	fmt.Println(len(distinctWords))
+	fmt.Println(dx*dx + dy*dy)
 }
