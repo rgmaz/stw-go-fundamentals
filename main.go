@@ -4,27 +4,20 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"strconv"
 	"strings"
 )
 
 func main() {
-	r := bufio.NewReader(os.Stdin)
-	line, _ := r.ReadString('\n')
+	reader := bufio.NewReader(os.Stdin)
+	line, _ := reader.ReadString('\n')
+	line = strings.TrimSpace(line)
 
-	parts := strings.Fields(strings.TrimSpace(line))
-	nums := make([]int, 0, len(parts))
-	for _, p := range parts {
-		n, _ := strconv.Atoi(p)
-		nums = append(nums, n)
+	words := strings.FieldsSeq(line)
+	distinctWords := make(map[string]int)
+
+	for w := range words {
+		distinctWords[w]++
 	}
 
-	max := nums[0]
-	for _, n := range nums[1:] {
-		if n > max {
-			max = n
-		}
-	}
-
-	fmt.Println(max)
+	fmt.Println(len(distinctWords))
 }
